@@ -14,7 +14,8 @@
 
 
 {
-  "image": "cirrusci/flutter:beta",
+  // "image": "cirrusci/flutter:beta",
+  "image": "cirrusci/flutter:2.10.5",
 	"name": "Flutter",
 	"extensions": [
 		"Dart-Code.dart-code",
