@@ -1,0 +1,6 @@
+{
+    "dart.autoImportCompletions": false,
+
+    "dart.flutterHotReloadOnSave": "all",
+    "dart.hotReloadOnSave": "all"
+}
