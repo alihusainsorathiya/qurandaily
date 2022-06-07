@@ -14,9 +14,7 @@
 
 
 {
-	"build": {
-		"dockerfile": "Dockerfile"
-	},
+  "image": "cirrusci/flutter:beta",
 	"name": "Flutter",
 	"extensions": [
 		"Dart-Code.dart-code",
