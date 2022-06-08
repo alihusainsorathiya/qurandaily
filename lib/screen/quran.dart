@@ -121,7 +121,6 @@ Widget _buildListView(QuranModel? quran) {
                 ),
 
                 Column(
-                  mainAxisSize: MainAxisSize.max,
                   // mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -162,13 +161,13 @@ Widget _buildListView(QuranModel? quran) {
                             .replaceAll("RevelationType.", "") ==
                         "MECCAN")
                     ? Image.asset(
-                        'images/mecca.png',
+                        'assets/images/mecca.png',
                         width: 60,
                         height: 60,
                         fit: BoxFit.cover,
                       )
                     : Image.asset(
-                        'images/medina.png',
+                        'assets/images/medina.png',
                         width: 60,
                         height: 60,
                         fit: BoxFit.cover,

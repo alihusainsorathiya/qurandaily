@@ -43,6 +43,12 @@ class _LatestNewsState extends State<LatestNews> {
                   itemCount: data!.items!.length,
                   // itemCount: 1,
                   itemBuilder: (c, i) {
+                    var title = data!.items![i].title.toString();
+                    var image = data!.items![i].media!.toString();
+                    var category = data!.items![i].categories.toString();
+                    var publishdate = data!.items![i].pubDate.toString();
+                    var link = data!.items![i].link.toString();
+                    var description = data!.items![i].description.toString();
                     // debugPrint("IMG :" + data!.items![i].title.toString());
                     // return Container(
                     //   padding: const EdgeInsets.all(0),
@@ -133,23 +139,47 @@ class _LatestNewsState extends State<LatestNews> {
                     // );
 
                     return Container(
-                      width: 45.w,
+                      width: 40.w,
                       padding: const EdgeInsets.all(0),
                       margin: const EdgeInsets.all(0),
                       // width: MediaQuery.of(context).size.width * 0.5,
                       child: GestureDetector(
-                        onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => LatestNewsDetails(
-                              i: i,
-                              data: data,
+                        onTap: () {
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => LatestNewsDetails(
+                          //       i: i,
+                          //       data: data,
+                          //     ),
+                          //   ),
+                          // );
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  LatestNewsDetails(i: i, data: data),
                             ),
-                          ),
-                        ),
+                          );
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
+                            decoration: const BoxDecoration(
+                              color: Colors.green,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(15.0),
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  offset: Offset(0, 0),
+                                  blurRadius: 2,
+                                  spreadRadius: 2,
+                                  color: Colors.black26,
+                                ),
+                              ],
+                            ),
                             child: Stack(
                               children: [
                                 ClipRRect(
@@ -157,6 +187,7 @@ class _LatestNewsState extends State<LatestNews> {
                                     data!.items![i].media!.toString(),
                                     fit: BoxFit.cover,
                                     width: 40.w,
+                                    height: 60.w,
                                   ),
                                   borderRadius: BorderRadius.circular(15),
                                 ),

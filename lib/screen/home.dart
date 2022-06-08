@@ -28,54 +28,56 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: AppBar(
-      //   elevation: 0,
-      //   actions: [
-      //     IconButton(
-      //       onPressed: () => {},
-      //       icon: const Icon(Icons.info_outline_rounded),
-      //     ),
-      //   ],
-      // ),
-      body: IndexedStack(
-        index: _selectedIndex,
-        children: _pages,
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.shifting,
-        iconSize: 30,
-        selectedFontSize: 20,
-        selectedIconTheme: const IconThemeData(
-          color: Colors.black54,
+    return SafeArea(
+      child: Scaffold(
+        // appBar: AppBar(
+        //   elevation: 0,
+        //   actions: [
+        //     IconButton(
+        //       onPressed: () => {},
+        //       icon: const Icon(Icons.info_outline_rounded),
+        //     ),
+        //   ],
+        // ),
+        body: IndexedStack(
+          index: _selectedIndex,
+          children: _pages,
         ),
-        selectedItemColor: Colors.black54,
-        selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.house_outlined,
-              color: Colors.blue,
-            ),
-            label: 'Home',
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.shifting,
+          iconSize: 27,
+          selectedFontSize: 15,
+          selectedIconTheme: const IconThemeData(
+            color: Colors.black54,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.bookmark_outline_outlined,
-              color: Colors.blue,
+          selectedItemColor: Colors.black54,
+          selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.house_outlined,
+                color: Colors.blue,
+              ),
+              label: 'Home',
             ),
-            label: 'Saved',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.settings,
-              color: Colors.blue,
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.bookmark_outline_outlined,
+                color: Colors.blue,
+              ),
+              label: 'Saved',
             ),
-            label: 'Settings',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.settings,
+                color: Colors.blue,
+              ),
+              label: 'Settings',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+        ),
       ),
     );
   }

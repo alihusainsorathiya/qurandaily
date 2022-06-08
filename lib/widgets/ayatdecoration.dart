@@ -22,7 +22,7 @@ class AyatDecoration extends StatelessWidget {
             width: sizeNumbering,
             height: sizeNumbering,
             child: Image.asset(
-              "images/number.png",
+              "assets/images/number.png",
               color: Colors.blue.shade400,
             ),
           ),

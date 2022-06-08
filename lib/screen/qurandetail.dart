@@ -19,50 +19,61 @@ class _QuranDetailState extends State<QuranDetail> {
         actions: const [],
         title: Text(widget.surahname),
       ),
-      body: ListView.builder(
-          itemCount: widget.ayats.length,
-          itemBuilder: ((context, index) {
-            var ayats = widget.ayats;
-            return Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              textDirection: TextDirection.rtl,
-              children: [
-                Card(
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    padding: const EdgeInsets.all(8),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        AyatDecoration(
-                            sizeNumbering: 40, text: (index + 1).toString()),
-                        const SizedBox(
-                          width: 8,
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.7,
-                          child: Text(
-                            ayats[index] + " ",
-                            style: const TextStyle(fontWeight: FontWeight.bold),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            ListView.builder(
+                scrollDirection: Axis.vertical,
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: widget.ayats.length,
+                itemBuilder: ((context, index) {
+                  var ayats = widget.ayats;
+                  return Column(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Card(
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          padding: const EdgeInsets.all(8),
+                          child: Row(
                             textDirection: TextDirection.rtl,
+                            children: [
+                              AyatDecoration(
+                                  sizeNumbering: 40,
+                                  text: (index + 1).toString()),
+                              const SizedBox(
+                                width: 8,
+                              ),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.7,
+                                child: Text(
+                                  ayats[index] + " ",
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold),
+                                  textDirection: TextDirection.rtl,
+                                ),
+                              ),
+                              const Spacer(),
+                              IconButton(
+                                  onPressed: (() => {print(index.toString())}),
+                                  icon: const Icon(
+                                    Icons.bookmark_add_outlined,
+                                    color: Colors.blue,
+                                    size: 20,
+                                  ))
+                            ],
                           ),
                         ),
-                        const Spacer(),
-                        IconButton(
-                            onPressed: (() => {print(index.toString())}),
-                            icon: const Icon(
-                              Icons.bookmark_add_outlined,
-                              color: Colors.blue,
-                              size: 20,
-                            ))
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            );
-          })),
+                      ),
+                    ],
+                  );
+                })),
+          ],
+        ),
+      ),
     );
   }
 }
