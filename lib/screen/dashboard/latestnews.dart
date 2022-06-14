@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:qurandaily/constants/uiconstants.dart';
-import 'package:qurandaily/screen/dashboard/latestnewsdetailed.dart';
 import 'package:sizer/sizer.dart';
+import 'package:url_launcher/url_launcher.dart';
 // import 'pack';
 
 import 'package:webfeed/domain/rss_feed.dart';
@@ -25,6 +25,10 @@ class _LatestNewsState extends State<LatestNews> {
 
   @override
   Widget build(BuildContext context) {
+    String title, image, category, publishdate, link, description;
+
+    List NewsDetail = [];
+
     return data != null
         ? Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,12 +47,18 @@ class _LatestNewsState extends State<LatestNews> {
                   itemCount: data!.items!.length,
                   // itemCount: 1,
                   itemBuilder: (c, i) {
-                    var title = data!.items![i].title.toString();
-                    var image = data!.items![i].media!.toString();
-                    var category = data!.items![i].categories.toString();
-                    var publishdate = data!.items![i].pubDate.toString();
-                    var link = data!.items![i].link.toString();
-                    var description = data!.items![i].description.toString();
+                    // title = data!.items![i].title.toString();
+                    // image = data!.items![i].media!.toString();
+                    // category = data!.items![i].categories.toString();
+                    // publishdate = data!.items![i].pubDate.toString();
+                    // link = data!.items![i].link.toString();
+                    // description = data!.items![i].description.toString();
+                    // NewsDetail.add(title);
+                    // NewsDetail.add(image);
+                    // NewsDetail.add(category);
+                    // NewsDetail.add(publishdate);
+                    // NewsDetail.add(link);
+                    // NewsDetail.add(description);
                     // debugPrint("IMG :" + data!.items![i].title.toString());
                     // return Container(
                     //   padding: const EdgeInsets.all(0),
@@ -144,25 +154,15 @@ class _LatestNewsState extends State<LatestNews> {
                       margin: const EdgeInsets.all(0),
                       // width: MediaQuery.of(context).size.width * 0.5,
                       child: GestureDetector(
-                        onTap: () {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => LatestNewsDetails(
-                          //       i: i,
-                          //       data: data,
-                          //     ),
-                          //   ),
-                          // );
-
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  LatestNewsDetails(i: i, data: data),
-                            ),
-                          );
-                        },
+                        onTap: () async => launchBrowser(Uri.parse(
+                            data!.items![i].link.toString())) // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) => LatestNewsDetails(
+                        //       newsDetail: NewsDetail,
+                        //     ),
+                        //   ),
+                        ,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
@@ -256,5 +256,15 @@ class _LatestNewsState extends State<LatestNews> {
     // debugPrint("DATAAAAAAAA" + data.toString());
     setState(() {});
     // }
+  }
+
+  launchBrowser(Uri uri) async {
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text("No web browser found"),
+      ));
+    }
   }
 }
